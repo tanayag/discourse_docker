@@ -479,7 +479,7 @@ ask_user_for_config() {
   fi
 
   local new_value=""
-  local config_ok="n"
+  local config_ok="y"
   local update_ok="y"
 
   echo ""
