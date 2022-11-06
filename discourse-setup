@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+
+set -o allexport
+source /home/ubuntu/.env
+set +o allexport
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 
@@ -426,31 +431,31 @@ ask_user_for_config() {
 
   # NOTE: Defaults now come from standalone.yml
 
-  read_config "DISCOURSE_HOSTNAME"
-  hostname=$read_config_result
+#  read_config "DISCOURSE_HOSTNAME"
+  hostname="${DISCOURSE_HOSTNAME}"
   local changelog=/tmp/changelog.$PPID
-  read_config "DISCOURSE_SMTP_ADDRESS"
-  local smtp_address=$read_config_result
+#  read_config "DISCOURSE_SMTP_ADDRESS"
+  local smtp_address="${DISCOURSE_SMTP_ADDRESS}"
   # NOTE: if there are spaces between emails, this breaks, but a human should be paying attention
-  read_config "DISCOURSE_DEVELOPER_EMAILS"
-  local developer_emails=$read_config_result
-  read_config "DISCOURSE_SMTP_PASSWORD"
-  local smtp_password=$read_config_result
-  read_config "DISCOURSE_SMTP_PORT"
-  local smtp_port=$read_config_result
-  read_config "DISCOURSE_SMTP_USER_NAME"
-  local smtp_user_name=$read_config_result
+#  read_config "DISCOURSE_DEVELOPER_EMAILS"
+  local developer_emails="${DISCOURSE_DEVELOPER_EMAILS}"
+#  read_config "DISCOURSE_SMTP_PASSWORD"
+  local smtp_password="${DISCOURSE_SMTP_PASSWORD}"
+#  read_config "DISCOURSE_SMTP_PORT"
+  local smtp_port="${DISCOURSE_SMTP_PORT}"
+#  read_config "DISCOURSE_SMTP_USER_NAME"
+  local smtp_user_name="${DISCOURSE_SMTP_USER_NAME}"
   if [ "$smtp_password" = "pa$$word" ]
   then
     smtp_password = ""
   fi
-  read_config "DISCOURSE_NOTIFICATION_EMAIL"
-  local notification_email=$read_config_result
-  read_config "DISCOURSE_SMTP_DOMAIN"
-  local discourse_smtp_DOMAIN=$read_config_result
+#  read_config "DISCOURSE_NOTIFICATION_EMAIL"
+  local notification_email="${DISCOURSE_NOTIFICATION_EMAIL}"
+#  read_config "DISCOURSE_SMTP_DOMAIN"
+  local discourse_smtp_DOMAIN="${DISCOURSE_SMTP_DOMAIN}"
 
-  read_config "LETSENCRYPT_ACCOUNT_EMAIL"
-  local letsencrypt_account_email=$read_config_result
+#  read_config "LETSENCRYPT_ACCOUNT_EMAIL"
+  local letsencrypt_account_email="${LETSENCRYPT_ACCOUNT_EMAIL}"
   if [ -z $letsencrypt_account_email ]
   then
     letsencrypt_account_email="me@example.com"
